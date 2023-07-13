@@ -13,12 +13,20 @@ const screen = {
 
 
         let repositoriesItems = ''
-        user.repositories.forEach(repo => repositoriesItems += `<li><a href="${repo.html_url}"                                                      target="_blank">${repo.name}<br><br>
-            <span> <img src="./src/images/forks.png" alt="forks"> ${repo.forks_count}</span>  
-            <span> <img src="./src/images/star.png" alt="star"> ${repo.stargazers_count}</span>
-            <span> <img src="./src/images/eyes.png" alt="eyes"> ${repo.watchers_count}</span>
-            <span> <img src="./src/images/work.png" alt="working on a computer"> ${repo.language?? ' '}</span>
-                                                                </a></li>`
+        user.repositories.forEach(repo => repositoriesItems += 
+            `<li><a href="${repo.html_url}" target="_blank">${repo.name}<br><br>
+                <span> 
+                    <img src="./src/images/forks.png" alt="forks"> ${repo.forks_count?? 'Sem forks'} </span>  
+                <span>
+                    <img src="./src/images/star.png" alt="star"> ${repo.stargazers_count?? 'Sem estrelas'} 
+                </span>
+                <span>
+                    <img src="./src/images/eyes.png" alt="eyes"> ${repo.watchers_count?? 'Sem watchers'} 
+                </span>
+                <span>
+                    <img src="./src/images/work.png" alt="working on a computer"> ${repo.language?? 'Sem linguagem'} 
+                </span>
+            </a></li>`
     )
             this.userProfile.innerHTML += `<div class="repositories section">
                                                 <h2>Repositórios</h2>
@@ -26,11 +34,18 @@ const screen = {
                                            </div>`
 
 
+       
         let eventItems = ''
-            user.moves.forEach((move) => { 
-                if(move.type === 'PushEvent'){
-                    eventItems += `<li> <span> ${move.repo.name} </span> - ${move.payload.commits[0].message} </li>`
-                }
+        user.moves.forEach(move =>{
+            if (move.type === 'PushEvent'){
+                eventItems += `<li> <span> ${move.repo.name} - </span>
+                                     ${move.payload.commits[0].message}
+                               </li>`
+            } else{
+                eventItems += `<li> <span> ${move.repo.name} - </span> 
+                                    Criado um ${move.payload.ref_type}
+                               </li>`
+            }
         })
 
         this.userProfile.innerHTML += `<div class="events section">
