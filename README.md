@@ -3,7 +3,7 @@
 Projeto desenvolvido consumindo a API do GitHub. O intuito é buscar informações de usuários do GitHub. 
 No sistema é possível fazer a busca pelos usuários e na tela aparecem algumas informações de perfil, repositórios e últimos eventos deste usuário. 
 
-[<img src="./src/images/projeto-api-github.GIF" alt="project gif">]
+[<img src="./src/images/projeto-api-github.gif" alt="project gif">]
 
 ## Meu processo
 
